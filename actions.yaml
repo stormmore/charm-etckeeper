@@ -1,0 +1,36 @@
+init:
+  description: Initialize etckeeper
+commit:
+  description: Do an immediate VCS commit.
+  params:
+    msg:
+      type: string
+      description: (Optional) Commit message
+unclean:
+  description: Returns true if the directory contains uncommitted changes
+update-ignore:
+  description: |
+    Updates the VCS ignore file. Generally ran after updating etckeeper
+  params:
+    present:
+      type: string
+      description: |
+        Make sure a "managed by etckeeper" block exists in the VCS ignore file
+      enum: [true, True, false, False]
+uninit:
+  description: |
+    DESTROYS DATA! Removes VCS information and etckeeper's own bookkeeping
+    information from /etc. The -f is passed, as otherwise it will attempt to
+    prompt to uninitialize, USE with the utmost CAUTION! Typical use would be
+    switching VCS
+vcs:
+  description: Runs VCS subcommands
+  params:
+    cmd:
+      type: string
+      description: VCS subcommand
+    opt:
+      type: string
+      description: (Optional) VCS subcommand options
+  required: [command]
+  additionalProperties: false
